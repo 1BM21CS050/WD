@@ -1,0 +1,42 @@
+<?php
+
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "book collection drive";
+$con = mysqli_connect('localhost', 'root','', $dbname);
+session_start();
+if (isset($_POST['Submit']))
+ {
+    $loc = $_POST['Location'];
+    $sub = $_POST['Subject'];
+    $qty = $_POST['Quantity'];
+ 
+     echo("<h1>HIIIIII</h1>");
+     
+     if (isset($loc)  && isset($sub) && isset($qty))
+      {
+             $query="INSERT INTO collection(Location,Subject, Quantity) VALUES ('$loc);
+             
+         
+             for($i=0; $i<$sub; $i++)
+             {
+                $query=('".$_POST["sub"][$i]."' , '".$_POST["qty"][$i]."');
+             }
+             $final_query=rtrim('$query',',');
+             
+ 
+             $c= mysqli_query($con, $final_query);
+             
+             echo($c);
+         
+      }
+    
+         if ($c) 
+         {
+             echo("<h1>Here</h1>");
+         } else 
+         {
+             echo("<h1>Not Here</h1>");
+         }
+     ?>
