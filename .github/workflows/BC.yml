@@ -1,4 +1,4 @@
-name: Super-Linter
+name: Super-Linter 
 
 on: push
 
@@ -15,3 +15,5 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
