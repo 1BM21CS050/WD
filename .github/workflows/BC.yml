@@ -1,35 +1,22 @@
-name: Deploy PHP Webpage
+name: PHP CI
 
-on:
-  push:
-    branches:
-      - main  # Adjust the branch name as needed
+on: [push]
 
 jobs:
-  deploy:
+  build:
+
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'  # Adjust the PHP version as needed
-
-      - name: Install IIS
-        run: |
-          Add-WindowsFeature Web-Server
-          Start-Service W3SVC
-
-      - name: Copy files to IIS document root
-        run: |
-          Remove-Item -Recurse C:\inetpub\wwwroot\*
-          Copy-Item -Recurse .\* C:\inetpub\wwwroot\
-
-      - name: Display IIS version
-        run: iisreset /version
-
-      - name: Test PHP webpage
-        run: Invoke-WebRequest http://localhost/ -UseBasicParsing
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+        tools: composer, phpunit
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Run tests
+      run: vendor/bin/phpunit
