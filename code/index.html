@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SQL Database Example</title>
+</head>
+<body>
+  <h1>Data from SQL Database</h1>
+  <ul id="data-list"></ul>
+
+  <script>
+    // Make an HTTP request to retrieve data from the backend
+    fetch('http://localhost:3000/data')
+      .then(response => response.json())
+      .then(data => {
+        const dataList = document.getElementById('data-list');
+        
+        // Process the retrieved data and display it on the page
+        data.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = item.collection; // Replace 'columnName' with the appropriate column name in your table
+          dataList.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data: ' + error);
+      });
+  </script>
+</body>
+</html>
