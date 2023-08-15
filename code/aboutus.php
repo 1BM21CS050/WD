@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="bchtml.php" class="btn">Home</a></li>
+                    <li><a href="bc.html" class="btn">Home</a></li>
                     <li><a href="login..php" class="btn">Login</a></li>
                     <li><a href="signup.php" class="btn">Sign Up</a></li>
                 </ul>

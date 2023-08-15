@@ -73,7 +73,7 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="bchtml.php" class="btn">Sign out</a></li>
+                        <li><a href="bc.html" class="btn">Sign out</a></li>
                         <li><a href="collection.php" class="btn">Collection</a></li>
                     </ul>
                 </nav>
