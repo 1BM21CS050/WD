@@ -43,5 +43,5 @@ jobs:
         touch data/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        DATABASE_URL: http://localhost/phpmyadmin/index.php?route=/database/structure&db=book+collection+drive
       run: vendor/bin/phpunit
