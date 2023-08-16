@@ -8,9 +8,6 @@ jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    strategy : 
-       matrix : 
-        os : [ubuntu-latest, windows-latest,macOS-latest]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -33,5 +30,4 @@ jobs:
       - name: Run Docker Container
         run: docker run -d -p 80:80 revu024/book_collection:latest  
 
-  publish : 
-        needs : push_to_registry
+
