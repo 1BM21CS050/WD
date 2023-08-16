@@ -1,22 +1,31 @@
-name: PHP CI
+name: Publish Docker image
 
-on: [push]
+on:
+  push:
+    branches: ['master']
 
 jobs:
-  build:
-
-    runs-on: windows-latest
-
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.0'
-        tools: package, phpunit
-    - name: Validate package.json and package.lock
-      run: package validate
-    - name: Install dependencies
-      run: package install --prefer-dist --no-progress --no-suggest
-    - name: Run tests
-      run: vendor/bin/phpunit
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          username: revu024
+          password: "docker@devOps"
+      
+      - name: Build Docker Image
+        run: docker build -t book_collection .
+        
+      - name: Tag Docker Image
+        run: docker tag book_collection:latest revu024/book_collection:latest
+      
+      - name: Push Docker Image
+        run: docker push revu024/book_collection:latest
+
+      - name: Run Docker Container
+        run: docker run -d -p 80:80 revu024/book_collection:latest
