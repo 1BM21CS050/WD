@@ -33,5 +33,5 @@ jobs:
       - name: Run Docker Container
         run: docker run -d -p 80:80 revu024/book_collection:latest  
 
-   publish : 
+  publish : 
         needs : push_to_registry
