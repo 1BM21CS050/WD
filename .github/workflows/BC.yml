@@ -44,7 +44,7 @@ jobs:
         run: docker build -t book_collection .
         
       - name: Tag Docker Image
-        run: docker tag devops:latest ${{secrets.Dusername}}/book_collection:latest
+        run: docker tag book_collection:latest ${{secrets.Dusername}}/book_collection:latest
       
       - name: Push Docker Image
         run: docker push ${{secrets.Dusername}}/book_collection:latest
