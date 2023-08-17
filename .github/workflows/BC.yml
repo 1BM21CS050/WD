@@ -28,6 +28,8 @@ jobs:
         run: docker push revu024/book_collection:latest
 
       - name: Run Docker Container
-        run: docker run -d -p 80:80 revu024/book_collection:latest   
+        run: docker run -d -p 80:80 revu024/book_collection:latest  
+
+
 
 
