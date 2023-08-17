@@ -28,7 +28,15 @@ jobs:
         run: docker push revu024/book_collection:latest
 
       - name: Run Docker Container
-        run: docker run -d -p 80:80 revu024/book_collection:latest  
+        run: docker run -d -p 80:80 revu024/book_collection:latest 
+
+      - name : Build sql image
+        run : docker pull mysql:8.0.34-debian
+
+      - name : Build php image 
+        run : docker pull phpmyadmin/phpmyadmin:latest
+
+        COPY book_collection_drive.sql /docker-entrypoint-initdb.d/
 
 
 
