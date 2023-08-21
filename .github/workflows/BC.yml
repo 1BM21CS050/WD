@@ -21,6 +21,9 @@ jobs:
           sudo ./xampp-linux-x64-8.2.4-0-installer.run
           sudo ln -s /opt/lampp/lampp /usr/local/bin/lampp
 
+      - name: Install MySQL Client
+        run: sudo apt-get install mysql-client
+
       - name: Install Composer
         run: |
           php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
