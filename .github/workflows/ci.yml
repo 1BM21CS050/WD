@@ -7,16 +7,18 @@ on:
 jobs:
   test_pull_request:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install PHP
-        run: sudo apt-get update && sudo apt-get install -y php
-      - name: Install Composer
-        run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - name: Install Dependencies
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v3
+        with:
+          php-version: '7.4' # Replace with your desired PHP version
+
+      - name: Install Composer dependencies
         run: composer install
-      - name: Run Tests
-        run: phpunit
-      - name: Build
-        run: php your-build-script.php
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit
