@@ -9,7 +9,7 @@ services :
          - 9000:80 
 
    mysql_db : 
-      images : mysql:latest
+      image : mysql:latest
       command: --default-authentication-plugin=mysql_native_password
       restart: always 
       environment:
