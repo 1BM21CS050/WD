@@ -15,7 +15,7 @@ services :
       environment:
          MYSQL_ROOT_PASSWORD: root
 
-    phpmyadmin :
+   phpmyadmin :
        image : phpmyadmin : latest
        restart : always
        ports : 
