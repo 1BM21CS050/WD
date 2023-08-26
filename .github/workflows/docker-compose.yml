@@ -1,8 +1,5 @@
 version: '3.9'
 
-on:
-   push:
-      branches: ['master']
 
 services: 
    php-env:
